@@ -1,0 +1,477 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="CloseAllApplications" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="809,4487" sap2010:WorkflowViewState.IdRef="CloseAllApplications_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="21">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="17">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Description: Here all working applications will be soft closed&#xA;&#xA;Pre Condition: N/A&#xA;Post Condtion: Applications closed" DisplayName="Normal App Closing Sequence" sap:VirtualizedContainerService.HintSize="789,4427" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="isElementExists" />
+      <Variable x:TypeArguments="x:Boolean" Name="saveExists" />
+      <Variable x:TypeArguments="x:Boolean" Name="OkExists" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="747,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Closing applications...&quot;]" />
+    <ui:ImageFound DisplayName="If Ok error dialog exists" Found="[OkExists]" sap:VirtualizedContainerService.HintSize="747,106" sap2010:WorkflowViewState.IdRef="ImageFound_4">
+      <ui:ImageFound.Image>
+        <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAVCAYAAAAnzezqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJFSURBVEhL7ZXLS2pRFIfvwL/AUTjSoEGDhoIz0VEkaKQDHSgoWj7QiUg0ihQfhe+JIFgaoWL4wMdArSCil/g//WIdUNwetzcuxr2DO/gGZ6291vk4e699fk2nU/xN/gv8+wJvb2+w2+1Qq9VzisWiaF29XodWq8Xt7a0oR3x8fMDhcCAcDjPxtQLdbhenp6ewWq0wmUxzfD4fCoUCs5aeJRIJMpkMEycW+6RSKSbHFXh4eMDFxQW2t7dRqVSYnMViwdHREXq9Ht7f34UYT4D6RCIRKBQKlMtlJkdwBZxOJ3Q6HTqdDl5fX5nccDjE2dkZ9vb2cH9/L8R4Ai6XCwcHB2i326I+BFfAaDRCo9GszBH0daRSKarVqvC8LDAej3F8fAyPx4NsNsvULvIjArTn9Nn39/eRy+VEtYtsXCCZTCIUCkEul6PVamEymYhqF9m4wM7ODmw2Gy4vL4WxTKfTotpFNi5AL6VRo9Pv9/txcnKCq6srUf0MroDX64XBYECtVsPLywuTo/GjuVYqlWg2m0Js+RDOoD56vX5lH4Ir8Pz8jGg0CplMhpubGyZHl9Hh4aFw0j8/P4UYT4D6xGIxbG1t4fr6mskRXAGi3+/j/PwcZrNZuBNmBAIBlEolZi1PgBgMBvM+iUSCya0VIOimc7vdwkjNWH450Wg0hAvn7u5OlCPoX0B94vE4E+cK0H49Pj6u5enpab4FfwpXgH44u7u7a1GpVMKsr6r/LlyBfD4vnOB1BINBjEajlfXf5bdn4GeZ4gt8FBDBVs5sEwAAAABJRU5ErkJggg==" />
+      </ui:ImageFound.Image>
+      <ui:ImageFound.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html title='HRMS*' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:ImageFound.Target>
+    </ui:ImageFound>
+    <If Condition="[OkExists]" sap:VirtualizedContainerService.HintSize="747,254" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Ok" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ClickImage_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+          <ui:ClickImage.CursorPosition>
+            <ui:CursorPosition Position="Center">
+              <ui:CursorPosition.OffsetX>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetX>
+              <ui:CursorPosition.OffsetY>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetY>
+            </ui:CursorPosition>
+          </ui:ClickImage.CursorPosition>
+          <ui:ClickImage.Image>
+            <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAB8AAAAWCAYAAAA4oUfxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJDSURBVEhL7ZXNS6JRFIdn4V/gSlxp4MKFy8Cd6CoKSsyFLhIUvzJsIyGuJMP8wEzdCIJaIiqFGlkLv4KITMX/6TecC4rX91VmBodmMYtn8Z5zz3ng3nvu+2M2m+G7+C//Fv5d+Wg0gt1uh06nW1AoFATrGo0GDAYDKpWKIEeMx2M4HA5EIhEuvlb+/PyMYDCIk5MTmM3mBWdnZ8jn89xa+pZIJLi9veXixHKfm5sbLicqHwwGuLy8xM7ODu7v77mc1WqFyWRCp9PB19cXi62TU5+rqysolUrc3d1xOUJU7nQ6cXBwgKenJ3x+fnK5breLUCgEjUaDx8dHFlsnd7lc2N/fR7vdFvQhROXHx8fQ6/WC+BzaFalUilqtxr5X5f1+H263G6enp8hkMlztMluX0xnTVu/t7SGbzQpql9mqPJVK4eLiAgqFAq1WC9PpVFC7zFblKpUKNpsNiUSCjV46nRbULrNVOQlpnOiW+/1+eDweJJNJQf0cUbnP58PR0RHq9To+Pj64HI0Yze3u7i6azSaLrV64OdTn8PBQtA8hKn9/f0c0GoVcLke5XOZy9NAYjUZ2oyeTCYutk1Of6+tryGQylEolLkeIyomXlxeEw2FYLBY283POz89RLBa5tevkxOvr66JPPB7ncmvlBL1gXq+Xjc2cVTHx8PDAHpNqtSrIEfS2U59YLMbFReV0PsPhcCNvb2+Lbf9TROX081Cr1RvRarVslsXqfxVReS6XYzd1E4FAAL1eT1D7O2w887/LDD8BrnEyn2uGFXwAAAAASUVORK5CYII=" />
+          </ui:ClickImage.Image>
+          <ui:ClickImage.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html title='HRMS*' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:ClickImage.Target>
+        </ui:ClickImage>
+      </If.Then>
+    </If>
+    <ui:UiElementExists DisplayName="Element Exists" Exists="[saveExists]" sap:VirtualizedContainerService.HintSize="747,68" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+      <ui:UiElementExists.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html title='HRMS*' /&gt;&lt;wnd cls='BEANSCONTROLWINDOW' title='BEANSCONTROLWINDOW' /&gt;&lt;wnd cls='SunAwtCanvas' /&gt;&lt;java name='MAIN' role='internal frame' /&gt;&lt;java name='บันทึกข้อมูล' role='push button' javastate='enabled' /&gt;" TimeoutMS="5000">
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:UiElementExists.Target>
+    </ui:UiElementExists>
+    <If Condition="[saveExists]" DisplayName="If can save" sap:VirtualizedContainerService.HintSize="747,3165" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="602,3017" sap2010:WorkflowViewState.IdRef="BrowserScope_1" Selector="&lt;html title='HRMS *' /&gt;">
+          <ui:BrowserScope.Body>
+            <ActivityAction x:TypeArguments="x:Object">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="568,2909" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Int32" Name="loopCount" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Save" sap:VirtualizedContainerService.HintSize="526,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition Position="Center">
+                      <ui:CursorPosition.OffsetX>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetX>
+                      <ui:CursorPosition.OffsetY>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetY>
+                    </ui:CursorPosition>
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="a4dfd69498546004d33081dcd68e04b6" Selector="&lt;html title='HRMS*' /&gt;&lt;wnd cls='BEANSCONTROLWINDOW' title='BEANSCONTROLWINDOW' /&gt;&lt;wnd cls='SunAwtCanvas' /&gt;&lt;java name='MAIN' role='internal frame' /&gt;&lt;java name='บันทึกข้อมูล' role='push button' javastate='enabled' /&gt;" WaitForReady="INTERACTIVE">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                    </ui:Target>
+                  </ui:Click.Target>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:Click>
+                <Sequence DisplayName="Wait Element" sap:VirtualizedContainerService.HintSize="526,943" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[loopCount]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <DoWhile DisplayName="Do While dialog appear" sap:VirtualizedContainerService.HintSize="484,459" sap2010:WorkflowViewState.IdRef="DoWhile_1">
+                    <DoWhile.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="ApproveDialogExists" />
+                    </DoWhile.Variables>
+                    <DoWhile.Condition>[(Not ApproveDialogExists) And (loopCount &lt; 45)]</DoWhile.Condition>
+                    <Sequence DisplayName="Dialog process" sap:VirtualizedContainerService.HintSize="376,298" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:UiElementExists DisplayName="is dialog appear" Exists="[ApproveDialogExists]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+                        <ui:UiElementExists.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="5bfded9548869e661fd90ebb6cbd6caf" Selector="&lt;html title='HRMS *' /&gt;&lt;wnd cls='BEANSCONTROLWINDOW' title='BEANSCONTROLWINDOW' /&gt;&lt;wnd cls='SunAwtCanvas' idx='3' /&gt;&lt;java name='WINDOW1' role='internal frame' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                        </ui:UiElementExists.Target>
+                      </ui:UiElementExists>
+                      <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[loopCount]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[loopCount + 1]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </DoWhile>
+                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click user detail OK " sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="8ba0900be9f1d38f5a91b30b5bf28379" Selector="&lt;html title='HRMS*' /&gt;&lt;wnd cls='BEANSCONTROLWINDOW' title='BEANSCONTROLWINDOW' /&gt;&lt;wnd cls='SunAwtCanvas' /&gt;&lt;java name='WINDOW1' role='internal frame' /&gt;&lt;java name='ตกลง' role='push button' /&gt;" WaitForReady="INTERACTIVE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:Click.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:Click>
+                  <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Image OK" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="ClickImage_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
+                    <ui:ClickImage.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:ClickImage.CursorPosition>
+                    <ui:ClickImage.Image>
+                      <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFIAAAAcCAYAAADyfuiHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEJSURBVGhD7ZnRDQIhEETp1CqsxNiBPdjE9YQ3KxjgdiEaRLybSZ6BZUjIi/FH55kuaYp0zpEG4kk+laQlph5xFdZZUoHLshCD6+0uqCKjRO2iXFg5+jrldL48z8RaCAZIWSY2FNmJjUhK/AyK7ARFdiITOaNEeVxAOytntfk3mVpkKaS1t2YjmFakJSSdlx3rzgh2I9Lqj2IXIq3uSP5eZNxb/VHwN7IT04oELVGaOG02gqlFAnlcQDsrZ7X5N8lEItggWpnYTCtSHmWg9X8Nv5Gd2IhEKPN9TJH4D0K7AOTCytHXKapIBMOaTJJjikSiTAqtAz9VkYgcrqBIbKInU2TMq0hMvPf+AYPbfvHGjr+XAAAAAElFTkSuQmCC" />
+                    </ui:ClickImage.Image>
+                    <ui:ClickImage.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html title='HRMS *' /&gt;" WaitForReady="INTERACTIVE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:ClickImage.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ClickImage>
+                </Sequence>
+                <Assign sap:VirtualizedContainerService.HintSize="526,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[loopCount]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <DoWhile DisplayName="Do While &lt;check error and success&gt;" sap:VirtualizedContainerService.HintSize="526,605" sap2010:WorkflowViewState.IdRef="DoWhile_2">
+                  <DoWhile.Variables>
+                    <Variable x:TypeArguments="x:Boolean" Name="isAlarmExists" />
+                    <Variable x:TypeArguments="x:Boolean" Name="isRecievedExists" />
+                  </DoWhile.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <DoWhile.Condition>[(Not isAlarmExists) And (Not isRecievedExists) And (loopCount &lt; 60)]</DoWhile.Condition>
+                  <Sequence DisplayName="Loop process until finish" sap:VirtualizedContainerService.HintSize="376,444" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ImageFound DisplayName="Image Alarm Exists" Found="[isAlarmExists]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ImageFound_1">
+                      <ui:ImageFound.Image>
+                        <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAApCAYAAABHomvIAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGHSURBVFhH7dULboQwDARQbs7VuBllUGdlHNuJg1mhqiONCtl8ntJVu+wvzz/wboaB67qe/Xa6QA+2LkvYqoQ7RbC90yqou4PGjcJ070LNlRbucjCjx4POIs1VEnjBMXIs0QU/k2lWPIVDsV8W2cw2gQzfJ3sbGN6efL/RLPIy0709Phe0BPjU7bEZ5GWWCXygXwfisPPAwRJoVacdOZIBfjbl80AJ1OdwXOb69ps00HiOKoG65UAUm2ZwhFjVaUeOZIGZSuB51vG937bt865jjr4eiDyB1DiEfzn+HhCpRFo45BVA4sqBCBbegUY4xAJyDGlXGCEyA5Uw1LuhEiCCDXpQCWK5zor3650CMhrqNYIxjwAZAryOxAJKHDINRLAxNkRHUYyFQ8qB+Df1SqD3vesFgFEcMgUE5ti9qYckSgK8eTrtrE48HEukhULw2SgOaWd2MgqUIcqCIR4OsVcEiYD4jMAeCrFuWMdfHQSHEqMbgRCiejBmCojIG5KtTv2OxXk5cN9/ANFtqZ7ehRB6AAAAAElFTkSuQmCC" />
+                      </ui:ImageFound.Image>
+                      <ui:ImageFound.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html title='HRMS *' /&gt;" TimeoutMS="1000" WaitForReady="INTERACTIVE" />
+                      </ui:ImageFound.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:ImageFound>
+                    <ui:ImageFound DisplayName="Image Recieved Exists" Found="[isRecievedExists]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ImageFound_2">
+                      <ui:ImageFound.Image>
+                        <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAC8AAAApCAYAAAClfnCxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE0SURBVFhH7dIBDoIwDAVQTsuduBN3Qr+mrhCQ9ndsJeEnSxVhPPAPy43z4HvlwfdKF/w0Tb8VSTX8GUj/Ps/z5xjmMPCEKngNwxKQPibg99HVTIn/B9ZTzmVSBY8AIeuLOQbrOY5jHzxuqt+wdFiOn8ExI713X7UFCwTfsTxwRD+wN6d4wWBtwdtZztn//Wiy1THhGZBn4h5MdUxXlLdyzWSrY8Ljb7VC2MlUx4zPWB1zbTJWx/yoGavjwmerjvnMjNWxP+Y72arjxmeqjgufrTouPJKpOhQ+S3Xc+EzVceORq6tzOb52dbAfsNgb8Mvw2LRszM89MD7L/uUe+6HwCFudKFgnhLdWpyZYh8avb9oOrEPjEWBag3XC+NZgnTC+NVgnhEdag3XC+J558L1yY/yyvACAOGUlF5VDrAAAAABJRU5ErkJggg==" />
+                      </ui:ImageFound.Image>
+                      <ui:ImageFound.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html title='HRMS *' /&gt;" TimeoutMS="1000" WaitForReady="INTERACTIVE" />
+                      </ui:ImageFound.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:ImageFound>
+                    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[loopCount]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[loopCount +1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </DoWhile>
+                <ui:ClickImage DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" ContinueOnError="True" DisplayName="Click Image OK" sap:VirtualizedContainerService.HintSize="526,106" sap2010:WorkflowViewState.IdRef="ClickImage_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
+                  <ui:ClickImage.CursorPosition>
+                    <ui:CursorPosition Position="Center">
+                      <ui:CursorPosition.OffsetX>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetX>
+                      <ui:CursorPosition.OffsetY>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetY>
+                    </ui:CursorPosition>
+                  </ui:ClickImage.CursorPosition>
+                  <ui:ClickImage.Image>
+                    <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAADsAAAAfCAYAAABZGLWTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEWSURBVFhH7ZfRCcMwDESzaafoJKUbdIcukZ1SrnAQhM5ynSaV3Rw8SGRJ+AX60Wn5o5yyo6Zadpqm9EQJO2oXZUh016LFenCe5/QwSljKcsBbyi+Y5dmC4MzGlWWjt6gXECs8rOz98YxlRxAlVviURbzh3ijK7iWKvcQ7s7VS/VMu19t7F7K7rL109K5qrRwmqy69rtseNdNKWlnVv4WUsqp3K+lk+a76t3D+ZhEWvaFWIhlPzqu1cqgswF7indlaqf4pUhbhgTfYG2tRZFdZ7FJ4/d/mUNlfE8oiIwhbUUTK4h+DtwTgHGR59qiWRdBYEs6MJ4pIWYTCvUhDUokiRVkEg4CLMsO7qoSyDBdlJkq1bP9Zlhde1QQRTwxnOgAAAABJRU5ErkJggg==" />
+                  </ui:ClickImage.Image>
+                  <ui:ClickImage.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html title='HRMS*' /&gt;" WaitForReady="INTERACTIVE">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                    </ui:Target>
+                  </ui:ClickImage.Target>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ClickImage>
+                <Sequence DisplayName="Back to first page" sap:VirtualizedContainerService.HintSize="526,797" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Int32" Name="loopCount" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[loopCount]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <DoWhile DisplayName="Do While" sap:VirtualizedContainerService.HintSize="484,605" sap2010:WorkflowViewState.IdRef="DoWhile_3">
+                    <DoWhile.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="isImageExists" />
+                    </DoWhile.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <DoWhile.Condition>[isImageExists And (loopCount &lt; 10)]</DoWhile.Condition>
+                    <Sequence sap:VirtualizedContainerService.HintSize="376,444" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" ContinueOnError="True" DisplayName="Click Close" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition Position="Center">
+                            <ui:CursorPosition.OffsetX>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetX>
+                            <ui:CursorPosition.OffsetY>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetY>
+                          </ui:CursorPosition>
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="cdcc0fdacdf1479daa130e205ff506cf" Selector="&lt;wnd cls='BEANSCONTROLWINDOW' title='BEANSCONTROLWINDOW' /&gt;&lt;wnd cls='SunAwtCanvas' /&gt;&lt;java name='MAIN' role='internal frame' /&gt;&lt;java name='Close' role='push button' /&gt;" TimeoutMS="1000" WaitForReady="INTERACTIVE" />
+                        </ui:Click.Target>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:Click>
+                      <ui:ImageFound DisplayName="Image Close Exists" Found="[isImageExists]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ImageFound_3">
+                        <ui:ImageFound.Image>
+                          <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPJSURBVDhPrZNpTFxVGIaHRaRptVLERBuXUtMaTTRN6g8NSmqjoWpiok1IqrG2MU0Tkyo1xTYEFBK7GE0LMRZKC6FUUElZndKhtoIollgYlqEs02GZrcAwwzAzzAyzPZ57bsflf0/y5r3n3vM99zvfOZ+GuzgkzGKx4HQ6hVzSXS4Xi+5F6fHnuOLv1PV3dGcuYbfn5vD6fPiWlwmsBAn5/QSXlqTHYrH/KRwKEQwG8YtvipSYuCTMbDYLsguP14tHgH0mI2G3k1g4BBGh8AqCTMznJjRrxyPWxzNWsoq7hE0Yjcw7HDgmjLi7Ooh6FmUwS/OqnHZi9hlipnFiAzcIXNMx3daK2XRLJjI7O4vNZldhQ8MGrFNTWGsqiU73g22E6JSekHmc6PVfiPV0SQUNN1i51EzkbAWu4yX8UVbKgF6PaXIS4y2TCuvr1zPeeBFf7dfE/vyBlStVcptKfQI9lwlUVuC/qZc185tNeD8/jO+jfQzt3o2utpa/+vro1w+osJ7u3xkp/pTIqX0sH3wfT5+OiHgfEwqJYvvEnxWwMle0UHeaxZ3vYHljB3X796PVavm1s0uFdba3c/PtbUTfyyKS+7oEKhnIE1QA/zlN78ggc7lv4d7+CtasF6jKeolz5WdobmlVYVd+amD46SeIZj1J+LXnCWe/iGNnDgGP+1+YcJ/VjCU7C8fWrcxveRbr5s2UPv4Yx0tKOF97QYV1NDbRu+EhQpvuI/DUepxbNrFw4aTcogJRhgL0B7zYCw5gyczEtv4RJtau5WhGBoVHjlBVXa3Cruo6uPrcRnwZibgevJe5c1/+U7NILCoh8Qwj0SjmD/diTE1Fn5zM4cwNFBUW8X1dvQrr6u6m5YM9WO9PxpOqwXZorwxSALMdFxl9ZiOLQwPKUtkhhu0vY9Jo+DEpmQOv5nD02DFa235WYdd7e+lsakb76MMsrNYwn6TBmr+H27pGTKtTmBGBkxnrsHRew/jmDsbFXJ+QwCdpaXyWd5AzlWf5TdwICdMPDDI4OERzcQm6NWtw3iNgyRpMwu0i0JIgnoWPCoDiCuiLVavIy93FiRNf0X5Zx7BhRIWNjo3JG6xA6wsKqE9Ppy8pSWakgBRXIAah1sRE8tMe4ON3d8ntNTU1MTg8zPTMjAqbmp6WvWmz2zGIP7TUnOdUTg7lAlotCl2ekkKF8OJ16eRty6Yw/xBlZWXyso6NjcvedDgWVJjS9bLg4rQCgYCEKi2mbWig9puTfFdUxLfFxZwuLaWmpoY27SXRz8MSIDtDuYdCEnZ3BvwNQgqXYxVpnQsAAAAASUVORK5CYII=" />
+                        </ui:ImageFound.Image>
+                        <ui:ImageFound.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                        </ui:ImageFound.Target>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:ImageFound>
+                      <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[loopCount]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[loopCount + 1]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </DoWhile>
+                </Sequence>
+              </Sequence>
+            </ActivityAction>
+          </ui:BrowserScope.Body>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:BrowserScope>
+      </If.Then>
+    </If>
+    <ui:UiElementExists DisplayName="HRMS exists" Exists="[isElementExists]" sap:VirtualizedContainerService.HintSize="747,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+      <ui:UiElementExists.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="6ebdb062f8e0a9934346027a449e663d" Selector="&lt;html title='HRMS *' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:UiElementExists.Target>
+    </ui:UiElementExists>
+    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Log Out'" sap:VirtualizedContainerService.HintSize="747,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="8f2949f9825e36205f76c80f3cbe4fe0" Selector="&lt;html title='HRMS *' /&gt;&lt;wnd cls='BEANSCONTROLWINDOW' title='BEANSCONTROLWINDOW' /&gt;&lt;wnd cls='SunAwtCanvas' idx='3' /&gt;&lt;java name='MAIN' role='internal frame' /&gt;&lt;java idx='1' name='Log Out' role='text' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:Click.Target>
+    </ui:Click>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke KillAllProcesses workflow" sap:VirtualizedContainerService.HintSize="747,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+  </Sequence>
+</Activity>

@@ -1,0 +1,58 @@
+<html xmlns:v='urn:schemas-microsoft-com:vml'xmlns:o='urn:schemas-microsoft-com:office:office'xmlns:w='urn:schemas-microsoft-com:office:word'xmlns:m='http://schemas.microsoft.com/office/2004/12/omml'xmlns='http://www.w3.org/TR/REC-html40'>
+	<head>
+		<meta http-equiv=Content-Type content='text/html; charset=unicode'>
+		<title>Success Reassign </title>
+		<style>
+			.italic
+			{ font-style:italic;color:Dark;font-family:Cordia New;font-size:18pt}
+			.normal
+			{ font-style:normal;color:Dark;font-family:Cordia New;font-size:18pt}
+			body
+			{ margin-left: 25px; 
+			  margin-top:  25px;}
+		    a:link {
+				text-decoration: none;
+			}
+			a:visited {
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<header class='page-container page-container-responsive space-top-5'> 
+			<p class=icon>
+				<span style='font-size:9.0pt;font-family:'Helvetica','sans-serif''>
+					<img border=0 id='_x0000_i1025' src='https://i.imgur.com/qn6GVGH.png' alt='NHK Icon'><o:p></o:p>
+				</span>
+			</p>
+		</header>
+  <table>
+   <tr>
+    <td> 
+     <div class='col-5 col-middle text-center' style='display: inline-block;'>
+      <img src='https://i.imgur.com/5wQCBWb.png' alt='Robot.' width='200' height='200'>
+     </div>
+    </td>
+    <td> 
+     <div style='font-family: Cordia New; margin-left: 25px;'>
+		<div style ='font-size: 24pt; font-weight: bold;'>
+			<font color='green'>Robot 20 : Approve OT success from file date : [date]</font>
+		</div>
+		<div style ='font-size: 16pt; font-weight: bold; margin-left:10pt;'>
+			<font color='black'>Please see the attached file with this email.</font>
+		</div>
+    </div>
+    </td>
+   </tr>
+  </table>
+  <br/>
+  <br/>
+  <div class='italic'><b>Robotic Process Automation (RPA)</b></div>
+  <div class='normal'><b>EDP Department - Head Office</b></div>
+  <!--<div class='normal'><b>NHK Spring (Thailand) CO.,LTD.</b></div>-->
+  <img border=0 id='_x0000_i1025' src='https://i.imgur.com/qn6GVGH.png' alt='NHK Icon'>
+  <div class='normal'><b>Phone : (+66)2-730-2200 Ext: 2432</b></div>
+  <div class='normal'><b>E-mail : </b><a href='mailto:kittipong.kit@nhkspg.co.th?Subject=Contact Problem' target='_top'>kittipong.kit@nhkspg.co.th</a></div>
+  <br/>
+ </body>
+</html>
